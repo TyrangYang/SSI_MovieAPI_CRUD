@@ -14,8 +14,28 @@ h1 {
     font-size: 70px;
 }
 
-h2 {
-    font-size: 40px;
+#card-create-form {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+
+    .input-group {
+        label {
+            display: block;
+            font-size: 20px;
+        }
+        input {
+            font-size: 20px;
+            width: 100%;
+        }
+    }
+
+    button {
+        width: 20%;
+        font-size: 20px;
+        margin: 10px auto 0px auto;
+    }
 }
 
 .listContainer {
@@ -33,12 +53,29 @@ h2 {
     background: #555;
     border-radius: 20px;
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    grid-template-columns: repeat(10, 1fr);
 
+    .fa-star {
+        grid-column: 1 / 2;
+    }
+    h2 {
+        font-size: 40px;
+        grid-column: 2 / 7;
+    }
+    p {
+        grid-column: 2 / 8;
+    }
+    .fa-bars {
+        grid-column: -1 / -2;
+    }
     &:nth-child(even) {
         background: #666;
+    }
+
+    &:hover {
+        filter: brightness(1.7);
     }
 }

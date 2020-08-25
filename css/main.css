@@ -15,8 +15,32 @@ h1 {
   font-size: 70px;
 }
 
-h2 {
-  font-size: 40px;
+#card-create-form {
+  width: 60%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#card-create-form .input-group label {
+  display: block;
+  font-size: 20px;
+}
+
+#card-create-form .input-group input {
+  font-size: 20px;
+  width: 100%;
+}
+
+#card-create-form button {
+  width: 20%;
+  font-size: 20px;
+  margin: 10px auto 0px auto;
 }
 
 .listContainer {
@@ -40,22 +64,43 @@ h2 {
   margin: 5px auto;
   background: #555;
   border-radius: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  -ms-grid-columns: (1fr)[10];
+      grid-template-columns: repeat(10, 1fr);
+}
+
+.card .fa-star {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / 2;
+}
+
+.card h2 {
+  font-size: 40px;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 5;
+  grid-column: 2 / 7;
+}
+
+.card p {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 6;
+  grid-column: 2 / 8;
+}
+
+.card .fa-bars {
+  grid-column: -1 / -2;
 }
 
 .card:nth-child(even) {
   background: #666;
+}
+
+.card:hover {
+  -webkit-filter: brightness(1.7);
+          filter: brightness(1.7);
 }
 /*# sourceMappingURL=main.css.map */

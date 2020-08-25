@@ -1,34 +1,45 @@
+let createNewCard = (title, popularity, id, cardList, isAppendEnd) => {
+    let temp = document.createElement('div');
+    temp.className = 'card';
+    temp.id = id;
+    let cardTitle = document.createElement('h2'),
+        cardPopularity = document.createElement('p'),
+        delBtn = document.createElement('button'),
+        editBtn = document.createElement('button'),
+        star = document.createElement('i'),
+        drag = document.createElement('i');
+
+    cardTitle.textContent = title;
+    cardPopularity = popularity;
+    delBtn.textContent = 'Delete';
+    delBtn.addEventListener('click', (e) => {
+        let elementId = e.target.parentNode.id;
+        if (confirm('delete?')) {
+            let element = document.getElementById(elementId);
+            element.parentNode.removeChild(element);
+        }
+    });
+    editBtn.textContent = 'Edit';
+    star.className = 'far fa-star';
+    star.isFavorite = false;
+    star.addEventListener('click', (e) => {
+        e.target.isFavorite = !e.target.isFavorite;
+        e.target.className = e.target.isFavorite
+            ? 'fas fa-star'
+            : 'far fa-star';
+    });
+    drag.className = 'fas fa-bars';
+
+    temp.append(star, cardTitle, cardPopularity, delBtn, editBtn, drag);
+    if (isAppendEnd) cardList.append(temp);
+    else cardList.prepend(temp);
+};
+
 let addElementToList = (resourceArray) => {
     let listMovie = document.querySelector('.listContainer');
+
     resourceArray.forEach((each) => {
-        let temp = document.createElement('div');
-        temp.className = 'card';
-        let title = document.createElement('h2'),
-            popularity = document.createElement('p'),
-            delBtn = document.createElement('button'),
-            editBtn = document.createElement('button'),
-            star_like = document.createElement('i'),
-            star_unlike = document.createElement('i'),
-            drag = document.createElement('i');
-
-        title.textContent = each.title;
-        popularity = each.popularity;
-        delBtn.textContent = 'Delete';
-        editBtn.textContent = 'Edit';
-        star_like.className = 'fas fa-star';
-        star_unlike.className = 'far fa-star';
-        drag.className = 'fas fa-bars';
-
-        temp.append(
-            star_like,
-            star_unlike,
-            title,
-            popularity,
-            delBtn,
-            editBtn,
-            drag
-        );
-        listMovie.append(temp);
+        createNewCard(each.title, each.popularity, each.id, listMovie, true);
     });
 };
 
@@ -48,6 +59,23 @@ let addElementToList = (resourceArray) => {
 // test//
 import { response as res } from './fakeData.js';
 let { results } = res;
-console.log(results);
 addElementToList(results);
 ///
+
+let cardCreateForm = document.getElementById('card-create-form');
+
+cardCreateForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    let title = document.getElementById('title-input').value;
+    let popularity = document.getElementById('popularity-input').value;
+
+    createNewCard(
+        title,
+        popularity,
+        Math.random(),
+        document.querySelector('.listContainer'),
+        false
+    );
+    console.log(title, popularity);
+});

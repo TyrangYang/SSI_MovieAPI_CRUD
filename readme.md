@@ -18,7 +18,7 @@
 ### Modules
 ---
 
-- [ ] Data Input section
+- [x] Data Input section
 - [ ] Edition section
 - [ ] Delete button
 - [ ] List of items in ordered list
