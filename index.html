@@ -26,25 +26,55 @@
     </head>
     <body>
         <h1>
-            <b>
-                Movie List
-            </b>
+            <b> Movie List </b>
         </h1>
 
         <form id="card-create-form">
             <div class="input-group">
                 <label for="title-input">Title:</label>
-                <input type="text" name="title" id="title-input" />
+                <input type="text" name="title" id="title-input" required />
             </div>
 
             <div class="input-group">
                 <label for="popularity-input">Popularity:</label>
-                <input type="number" name="popularity" id="popularity-input" />
+                <input
+                    type="number"
+                    name="popularity"
+                    id="popularity-input"
+                    required
+                />
             </div>
-            <button id="submit-btn">Submit</button>
+            <button>Submit</button>
         </form>
 
         <div class="listContainer"></div>
+
+        <div class="editCardContainer">
+            <div class="editCard">
+                <form id="card-edit-form">
+                    <div class="input-group">
+                        <label for="title-edit">Title:</label>
+                        <input
+                            type="text"
+                            name="title"
+                            id="title-edit"
+                            required
+                        />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="popularity-edit">Popularity:</label>
+                        <input
+                            type="number"
+                            name="popularity"
+                            id="popularity-edit"
+                            required
+                        />
+                    </div>
+                    <button>Edit</button>
+                </form>
+            </div>
+        </div>
 
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"

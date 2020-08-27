@@ -1,38 +1,59 @@
+// create a new card for display by given message
 let createNewCard = (title, popularity, id, cardList, isAppendEnd) => {
-    let temp = document.createElement('div');
-    temp.className = 'card';
-    temp.id = id;
+    let newCard = document.createElement('div');
+    newCard.className = 'card';
+    newCard.id = id;
     let cardTitle = document.createElement('h2'),
         cardPopularity = document.createElement('p'),
-        delBtn = document.createElement('button'),
-        editBtn = document.createElement('button'),
+        delBtn = document.createElement('i'),
+        editBtn = document.createElement('i'),
         star = document.createElement('i'),
         drag = document.createElement('i');
 
     cardTitle.textContent = title;
     cardPopularity = popularity;
-    delBtn.textContent = 'Delete';
+
+    delBtn.className = 'fas fa-trash-alt fa-lg';
+    // add delete event
     delBtn.addEventListener('click', (e) => {
-        let elementId = e.target.parentNode.id;
+        let cardId = e.target.parentNode.id;
         if (confirm('delete?')) {
-            let element = document.getElementById(elementId);
+            let element = document.getElementById(cardId);
             element.parentNode.removeChild(element);
         }
     });
-    editBtn.textContent = 'Edit';
-    star.className = 'far fa-star';
+    editBtn.className = 'fas fa-edit fa-lg';
+    //add edit event
+    editBtn.addEventListener('click', (e) => {
+        let editCardContainer = document.getElementsByClassName(
+            'editCardContainer'
+        )[0];
+        editCardContainer.style.display = 'block';
+        // Pass current card id to the form for editing
+        document.getElementById('card-edit-form').cardId =
+            e.target.parentNode.id;
+        // add default value for edit
+        document.querySelector('#title-edit').value =
+            e.target.parentNode.childNodes[1].textContent;
+        document.querySelector('#popularity-edit').value =
+            e.target.parentNode.childNodes[2].textContent;
+    });
+
+    star.className = 'far fa-star fa-lg';
     star.isFavorite = false;
     star.addEventListener('click', (e) => {
         e.target.isFavorite = !e.target.isFavorite;
         e.target.className = e.target.isFavorite
-            ? 'fas fa-star'
-            : 'far fa-star';
-    });
-    drag.className = 'fas fa-bars';
+            ? 'fas fa-star fa-lg'
+            : 'far fa-star fa-lg';
 
-    temp.append(star, cardTitle, cardPopularity, delBtn, editBtn, drag);
-    if (isAppendEnd) cardList.append(temp);
-    else cardList.prepend(temp);
+        //** add to favorite list */
+    });
+    drag.className = 'fas fa-bars fa-lg';
+
+    newCard.append(star, cardTitle, cardPopularity, delBtn, editBtn, drag);
+    if (isAppendEnd) cardList.append(newCard);
+    else cardList.prepend(newCard);
 };
 
 let addElementToList = (resourceArray) => {
@@ -43,6 +64,10 @@ let addElementToList = (resourceArray) => {
     });
 };
 
+/* 
+Init data though api
+Currently commented 
+*/
 // const apiURL = 'https://api.themoviedb.org/3/movie';
 // const apiKey = 'ae09140db64f8c19eae245a3b5feed8a';
 // axios
@@ -56,26 +81,54 @@ let addElementToList = (resourceArray) => {
 //     })
 //     .catch((err) => console.log(err));
 
-// test//
+// import fake data //
 import { response as res } from './fakeData.js';
 let { results } = res;
 addElementToList(results);
 ///
 
-let cardCreateForm = document.getElementById('card-create-form');
-
-cardCreateForm.addEventListener('submit', (e) => {
+// Form submit event listener
+document.getElementById('card-create-form').addEventListener('submit', (e) => {
     e.preventDefault();
 
-    let title = document.getElementById('title-input').value;
-    let popularity = document.getElementById('popularity-input').value;
-
     createNewCard(
-        title,
-        popularity,
+        document.getElementById('title-input').value,
+        document.getElementById('popularity-input').value,
         Math.random(),
         document.querySelector('.listContainer'),
         false
     );
-    console.log(title, popularity);
+
+    e.target.reset();
+});
+
+// edit card event listener
+document.getElementById('card-edit-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Change card
+    let targetCard = document.getElementById(e.target.cardId);
+    targetCard.childNodes[1].textContent = document.getElementById(
+        'title-edit'
+    ).value;
+    targetCard.childNodes[2].textContent = document.getElementById(
+        'popularity-edit'
+    ).value;
+
+    // close popup
+    document.getElementsByClassName('editCardContainer')[0].style.display =
+        'none';
+});
+
+window.addEventListener('click', (e) => {
+    // close popup
+    if (e.target.className == 'editCardContainer') {
+        let editCardContainer = document.getElementsByClassName(
+            'editCardContainer'
+        )[0];
+        editCardContainer.style.display = 'none';
+
+        // clean edit form
+        document.getElementById('card-edit-form').reset();
+    }
 });

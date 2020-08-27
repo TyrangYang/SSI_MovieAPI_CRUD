@@ -1,4 +1,4 @@
 @URL = https://api.themoviedb.org/3/movie
 @key = ae09140db64f8c19eae245a3b5feed8a
 
-GET {{URL}}/top_rated?api_key={{key}} HTTP/1.1
+GET {{URL}}/top_rated?api_key={{key}}&language=en-US&page=1 HTTP/1.1

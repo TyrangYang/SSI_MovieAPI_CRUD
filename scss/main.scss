@@ -14,27 +14,27 @@ h1 {
     font-size: 70px;
 }
 
-#card-create-form {
+form {
     width: 60%;
     margin: auto;
     display: flex;
     flex-direction: column;
 
     .input-group {
+        margin-bottom: 5px;
         label {
-            display: block;
-            font-size: 20px;
+            font-size: 40px;
         }
         input {
-            font-size: 20px;
+            font-size: 40px;
             width: 100%;
         }
     }
 
     button {
         width: 20%;
-        font-size: 20px;
-        margin: 10px auto 0px auto;
+        font-size: 3vw;
+        margin: 10px auto;
     }
 }
 
@@ -78,4 +78,33 @@ h1 {
     &:hover {
         filter: brightness(1.7);
     }
+}
+
+.editCardContainer {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+
+    .editCard {
+        width: 70%;
+        height: 50%;
+        background-color: #333;
+        opacity: 70%;
+        margin: auto;
+        display: flex;
+        form {
+            width: 90%;
+        }
+    }
+}
+
+.fas.fa-star {
+    color: yellow;
 }

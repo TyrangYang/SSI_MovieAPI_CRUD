@@ -5,8 +5,8 @@
 ### Requirements
 ---
 
-- [ ] HTML5 + CSS3 for the layout.
-- [ ] Follow the principle of Functional Programming.
+- [x] HTML5 + CSS3 for the layout.
+- [x] Follow the principle of Functional Programming.
 - [ ] CREATE, READ, UPDATE, DELETE.
 - [ ] Available items to be added into favorite list.
 - [ ] Pagination: each page contains 10 items only.
@@ -19,8 +19,8 @@
 ---
 
 - [x] Data Input section
-- [ ] Edition section
-- [ ] Delete button
+- [x] Edition section
+- [x] Delete button
 - [ ] List of items in ordered list
 - [ ] Re-order main list according to initial letter
 - [ ] Add favorite items
