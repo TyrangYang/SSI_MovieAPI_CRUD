@@ -1,0 +1,24 @@
+{
+    "name": "movie-crud",
+    "version": "1.0.0",
+    "description": "> SSI INC. UI Developer Training Program # Assignment: A CRUD app",
+    "main": "index.html",
+    "dependencies": {},
+    "devDependencies": {},
+    "scripts": {
+        "predeploy": "mkdir public && cp ./main.js ./public/main.js && cp ./index.html ./public/index.html && cp -r ./css/ ./public/css/",
+        "deploy": "npx gh-pages -d public",
+        "clean": "rm -rf node_modules public && rm package-lock.json",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TyrangYang/SSI_MovieAPI_CRUD.git"
+    },
+    "author": "Haolin Yang",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/TyrangYang/SSI_MovieAPI_CRUD/issues"
+    },
+    "homepage": "https://github.com/TyrangYang/SSI_MovieAPI_CRUD#readme"
+}
