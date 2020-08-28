@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CRUD</title>
+        <link rel="stylesheet" href="./css/main.css" />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.14.0/css/solid.css"
+            integrity="sha384-TN9eFVoW87zV3Q7PfVXNZFuCwsmMwkuOTOUsyESfMS9uwDTf7yrxXH78rsXT3xf0"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.14.0/css/regular.css"
+            integrity="sha384-e46AbGhCSICtPh8xpc35ZioOrHg2PGsH1Bpy/vyr9AhEMVhttzxc+2GSMSP+Y60P"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.14.0/css/fontawesome.css"
+            integrity="sha384-PRy/NDAXVTUcXlWA3voA+JO/UMtzWgsYuwMxjuu6DfFPgzJpciUiPwgsvp48fl3p"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <h1>
+            <b> Movie List </b>
+        </h1>
+
+        <form id="card-create-form">
+            <div class="inputGroup">
+                <label for="title-input">Title:</label>
+                <input type="text" name="title" id="title-input" required />
+            </div>
+
+            <div class="inputGroup">
+                <label for="popularity-input">Popularity:</label>
+                <input
+                    type="number"
+                    name="popularity"
+                    id="popularity-input"
+                    required
+                />
+            </div>
+            <button>Submit</button>
+        </form>
+
+        <div class="tabContainer">
+            <button id="all-btn" class="active">All</button>
+            <button id="favorite-btn">Favorite</button>
+        </div>
+        <div class="listContainer" id="favorite-list"></div>
+        <div class="listContainer" id="all-list"></div>
+
+        <div class="editCardContainer">
+            <div class="editCard">
+                <form id="card-edit-form">
+                    <div class="inputGroup">
+                        <label for="title-edit">Title:</label>
+                        <input
+                            type="text"
+                            name="title"
+                            id="title-edit"
+                            required
+                        />
+                    </div>
+
+                    <div class="inputGroup">
+                        <label for="popularity-edit">Popularity:</label>
+                        <input
+                            type="number"
+                            name="popularity"
+                            id="popularity-edit"
+                            required
+                        />
+                    </div>
+                    <button>Edit</button>
+                </form>
+            </div>
+        </div>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
+            integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="
+            crossorigin="anonymous"
+        ></script>
+        <script type="module" src="./main.js"></script>
+    </body>
+</html>
