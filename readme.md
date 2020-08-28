@@ -7,8 +7,8 @@
 
 - [x] HTML5 + CSS3 for the layout.
 - [x] Follow the principle of Functional Programming.
-- [ ] CREATE, READ, UPDATE, DELETE.
-- [ ] Available items to be added into favorite list.
+- [x] CREATE, READ, UPDATE, DELETE.
+- [x] Available items to be added into favorite list.
 - [ ] Pagination: each page contains 10 items only.
 - [x] Fetch data from an REST API as your initialized data for the list.(optional)
 - [ ] Re-order favorite list by using DOM APIs: drag and drop.(optional)

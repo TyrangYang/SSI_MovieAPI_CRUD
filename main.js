@@ -7,7 +7,14 @@ let main = async (results) => {
     let favoriteData = [];
     let listData = [];
     // create a new card for display by given message
-    let createNewCard = (title, popularity, id, cardList, isAppendEnd) => {
+    let createNewCard = (
+        title,
+        popularity,
+        id,
+        isFavorite,
+        cardList,
+        isAppendEnd
+    ) => {
         let newCard = document.createElement('div');
         newCard.className = 'card';
         newCard.id = id;
@@ -47,22 +54,21 @@ let main = async (results) => {
                 e.target.parentNode.childNodes[2].textContent;
         });
 
-        star.className = 'far fa-star fa-lg';
-        newCard.isFavorite = false;
+        star.className = isFavorite ? 'fas fa-star fa-lg' : 'far fa-star fa-lg';
         star.addEventListener('click', (e) => {
-            newCard.isFavorite = !newCard.isFavorite;
-            e.target.className = newCard.isFavorite
+            let cardId = +e.target.parentNode.id;
+            let cardData = listData.find((e) => e.id == cardId);
+            cardData.isFavorite = !cardData.isFavorite;
+            e.target.className = cardData.isFavorite
                 ? 'fas fa-star fa-lg'
                 : 'far fa-star fa-lg';
 
             // add to or remove from favorite list */
-            if (newCard.isFavorite) {
-                favoriteData.push(
-                    listData.filter((e) => e.id === +newCard.id)[0]
-                );
+            if (cardData.isFavorite) {
+                favoriteData.push(listData.filter((e) => e.id === cardId)[0]);
             } else {
                 favoriteData = favoriteData.filter((e) => {
-                    return e.id !== +newCard.id;
+                    return e.id !== cardId;
                 });
             }
         });
@@ -72,7 +78,7 @@ let main = async (results) => {
         if (isAppendEnd) cardList.append(newCard);
         else cardList.prepend(newCard);
     };
-
+    // create favorite list
     let createAllNewFavoriteCard = (favoriteData) => {
         let favoriteList = document.getElementById('favorite-list');
 
@@ -97,6 +103,7 @@ let main = async (results) => {
                 each.title,
                 each.popularity,
                 each.id,
+                each.isFavorite,
                 listMovie,
                 true
             );
@@ -111,7 +118,9 @@ let main = async (results) => {
     // var {
     //     data: { results, total_pages },
     // } = await axios.get(`${apiURL}/popular?api_key=${apiKey}&language=en-US&page=1`);
+    results.forEach((e) => (e.isFavorite = false));
     listData = results;
+    console.log(listData);
     addElementToList(listData, 'all-list');
 
     // Form submit event listener
